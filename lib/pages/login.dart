@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:marsbazaar/provider/default_provider.dart';
@@ -105,7 +107,7 @@ class _LoginOnboardState extends State<LoginOnboard> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         elevation: 0.0,
-                        primary: theme.teal.colour,
+                        backgroundColor: theme.teal.colour,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0),
                         ),
@@ -282,7 +284,7 @@ class _LoginPageState extends State<LoginPage> {
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               elevation: 0.0,
-                              primary: theme.teal.colour,
+                              backgroundColor: theme.teal.colour,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.0),
                               ),
@@ -417,7 +419,7 @@ class _WelcomeUserPageState extends State<WelcomeUserPage> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       elevation: 0.0,
-                      primary: theme.teal.colour,
+                      backgroundColor: theme.teal.colour,
                     ),
                     onPressed: () async {
                       // Store as default option if selected
@@ -456,7 +458,7 @@ class _WelcomeUserPageState extends State<WelcomeUserPage> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       elevation: 0.0,
-                      primary: theme.lightBlue.colour,
+                      backgroundColor: theme.lightBlue.colour,
                     ),
                     onPressed: () async {
                       // Store as default option if selected
