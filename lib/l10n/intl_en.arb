@@ -50,5 +50,7 @@
   "successfullyClockedIn": "You clocked in successfully",
   "successfullyClockedOut": "You clocked out successfully",
   "viewProfile": "View Profile",
-  "editProfile": "Edit Profile"
+  "editProfile": "Edit Profile",
+  "admin": "Admin",
+  "normal": "Normal"
 }
