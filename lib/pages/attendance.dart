@@ -44,11 +44,11 @@ class _AttendancePageState extends State<AttendancePage> {
   }
 
   void updateCurrentTime() {
-    currentTime = DateTime.now().hour.toString().padLeft(2, "0") + ":" + DateTime.now().minute.toString().padLeft(2, "0");
+    currentTime = "${DateTime.now().hour.toString().padLeft(2, "0")}:${DateTime.now().minute.toString().padLeft(2, "0")}";
   }
 
   void updateCurrentDate() {
-    currentDate = getWeekdayString(DateTime.now().weekday) + " " + DateTime.now().day.toString() + " " + getMonthString(DateTime.now().month);
+    currentDate = "${getWeekdayString(DateTime.now().weekday)} ${DateTime.now().day} ${getMonthString(DateTime.now().month)}";
   }
 
   String getWeekdayString(int weekDay) {
@@ -284,7 +284,7 @@ class _AttendancePageState extends State<AttendancePage> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: defaultProvider(context).clockedIn ? theme.red.colour : theme.teal.colour,
+                    backgroundColor: defaultProvider(context).clockedIn ? theme.red.colour : theme.teal.colour,
                     shape: const CircleBorder(),
                     splashFactory: InkRipple.splashFactory,
                   ),
@@ -344,7 +344,7 @@ class _AttendancePageState extends State<AttendancePage> {
                     clockInIcon,
                     const SizedBox(height: 8.0),
                     Text(
-                      defaultProvider(context).clockIn == null ? "--:--" : defaultProvider(context).clockIn!.hour.toString().padLeft(2, "0") + ":" + defaultProvider(context).clockIn!.minute.toString().padLeft(2, "0"),
+                      defaultProvider(context).clockIn == null ? "--:--" : "${defaultProvider(context).clockIn!.hour.toString().padLeft(2, "0")}:${defaultProvider(context).clockIn!.minute.toString().padLeft(2, "0")}",
                       style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w500,
@@ -365,7 +365,7 @@ class _AttendancePageState extends State<AttendancePage> {
                     clockOutIcon,
                     const SizedBox(height: 8.0),
                     Text(
-                      defaultProvider(context).clockOut == null ? "--:--" : defaultProvider(context).clockIn!.hour.toString().padLeft(2, "0") + ":" + defaultProvider(context).clockOut!.minute.toString().padLeft(2, "0"),
+                      defaultProvider(context).clockOut == null ? "--:--" : "${defaultProvider(context).clockIn!.hour.toString().padLeft(2, "0")}:${defaultProvider(context).clockOut!.minute.toString().padLeft(2, "0")}",
                       style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w500,
@@ -386,7 +386,7 @@ class _AttendancePageState extends State<AttendancePage> {
                     clockHoursIcon,
                     const SizedBox(height: 8.0),
                     Text(
-                      (defaultProvider(context).clockIn == null || defaultProvider(context).clockOut == null) ? "--h --m" : (defaultProvider(context).clockOut!.difference(defaultProvider(context).clockIn!)).inHours.toString().padLeft(2, "0") + "h " + ((defaultProvider(context).clockOut!.difference(defaultProvider(context).clockIn!)).inMinutes % 60).toString().padLeft(2, "0") + "m",
+                      (defaultProvider(context).clockIn == null || defaultProvider(context).clockOut == null) ? "--h --m" : "${(defaultProvider(context).clockOut!.difference(defaultProvider(context).clockIn!)).inHours.toString().padLeft(2, "0")}h ${((defaultProvider(context).clockOut!.difference(defaultProvider(context).clockIn!)).inMinutes % 60).toString().padLeft(2, "0")}m",
                       style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w500,
@@ -411,13 +411,18 @@ class _AttendancePageState extends State<AttendancePage> {
       Text(AppLocalizations.of(context)!.timeSheet),
       Scaffold(
         appBar: AppBar(
-          title: Text(
-            editingProfile ? AppLocalizations.of(context)!.editProfile : AppLocalizations.of(context)!.viewProfile,
-            style: const TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
+          title: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              editingProfile ? AppLocalizations.of(context)!.editProfile : AppLocalizations.of(context)!.viewProfile,
+              style: const TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
+          backgroundColor: theme.white.colour,
+          foregroundColor: theme.black.colour,
         ),
         body: Center(
           child: Column(
@@ -439,6 +444,27 @@ class _AttendancePageState extends State<AttendancePage> {
                           backgroundImage: NetworkImage(sp.data!.getString("defaultUserPhotoURL") ?? defaultUserPhotoURL),
                         ),
                         const SizedBox(width: 24.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              sp.data!.getString("defaultUserName") ?? defaultUserName,
+                              style: TextStyle(
+                                color: theme.darkBlue.colour,
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              sp.data!.getString("defaultUserEmail") ?? defaultUserEmail,
+                              style: const TextStyle(fontSize: 14.0),
+                            ),
+                            const SizedBox(height: 8.0),
+                            Text(
+                              sp.data!.getBool("defaultUserAdmin") ?? defaultUserAdmin ? AppLocalizations.of(context)!.admin : AppLocalizations.of(context)!.normal
+                            ),
+                          ],
+                        ),
                       ],
                     );
                   } else if (sp.hasError) {
