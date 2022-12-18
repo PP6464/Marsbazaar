@@ -9,5 +9,15 @@
   "welcomeTo": "Welcome to",
   "welcomeToMarsBazaar": "Welcome to MarsBazaar",
   "enterPassword": "Enter Password",
-  "exampleEmail": "example@mail.com"
+  "exampleEmail": "example@mail.com",
+  "helloDefaultUserName": "Hello {userName}",
+  "@helloDefaultUserName": {
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "error": "There has been an error",
+  "chooseAnyOne": "Choose Any One",
+  "attendance": "Attendance",
+  "internalLead": "Internal Lead"
 }
