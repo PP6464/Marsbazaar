@@ -18,6 +18,16 @@ dependencies:
   intl: ^0.17.0
   # Shared Preferences
   shared_preferences: ^2.0.15
+  # Launcher
+  flutter_app_name: ^0.1.1
+  flutter_launcher_icons: ^0.11.0
+
+flutter_app_name:
+  name: "MarsBazaar Internal Lead App"
+flutter_icons:
+  image_path: "assets/logo.png"
+  android: true
+  ios: true
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +43,7 @@ flutter:
     - assets/login_onboard.png
     - assets/login_overlay_br.png
     - assets/login_overlay_tr.png
+    - assets/logo.png
   fonts:
    - family: Maven Pro
      fonts:
