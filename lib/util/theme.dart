@@ -13,6 +13,8 @@ extension ColourExt on theme {
         return Colors.white;
       case theme.red:
         return const Color(0xFFF53E5E);
+      case theme.lightBlue:
+        return const Color(0xFFE4E7FF);
     }
   }
 }
@@ -23,5 +25,6 @@ enum theme {
   darkBlue,
   white,
   black,
-  red
+  red,
+  lightBlue,
 }

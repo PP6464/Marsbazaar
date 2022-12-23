@@ -44,6 +44,8 @@ flutter:
     - assets/login_overlay_br.png
     - assets/login_overlay_tr.png
     - assets/logo.png
+    - assets/internal_lead_icon.png
+    - assets/attendance_icon.png
   fonts:
    - family: Maven Pro
      fonts:

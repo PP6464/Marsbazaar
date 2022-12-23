@@ -10,3 +10,5 @@ Widget loginOnboard = Image.asset("assets/login_onboard.png");
 const Widget blank = SizedBox(width: 0.0, height: 0.0);
 Text errorText(BuildContext context) => Text(AppLocalizations.of(context)!.error);
 Widget loadingIndicator = CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(theme.teal.colour), backgroundColor: Colors.teal[700]!,);
+Widget internalLeadIcon = Image.asset("assets/internal_lead_icon.png");
+Widget attendanceIcon = Image.asset("assets/attendance_icon.png");

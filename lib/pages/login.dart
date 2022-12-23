@@ -100,6 +100,7 @@ class _LoginOnboardState extends State<LoginOnboard> {
                     padding: const EdgeInsets.symmetric(horizontal: 27.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                        elevation: 0.0,
                         primary: theme.teal.colour,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(7.0),
@@ -276,13 +277,14 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(height: 50.0),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              elevation: 0.0,
                               primary: theme.teal.colour,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(7.0),
                               ),
                             ),
                             onPressed: () async {
-                              //TODO: Login user
+                              // TODO: Login user
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -323,6 +325,8 @@ class WelcomeUserPage extends StatefulWidget {
 }
 
 class _WelcomeUserPageState extends State<WelcomeUserPage> {
+  bool setAsDefaultOption = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -383,17 +387,87 @@ class _WelcomeUserPageState extends State<WelcomeUserPage> {
                   ),
                   const SizedBox(height: 25.0),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
+                      primary: theme.teal.colour,
+                    ),
                     onPressed: () {},
-                    child: Text(
-                      AppLocalizations.of(context)!.attendance,
+                    child: SizedBox(
+                      height: 80.0,
+                      width: 300.0,
+                      child: Center(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            attendanceIcon,
+                            const SizedBox(width: 16.0),
+                            Text(
+                              AppLocalizations.of(context)!.attendance,
+                              style: const TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 24.0),
                   ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      AppLocalizations.of(context)!.internalLead,
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0.0,
+                      primary: theme.lightBlue.colour,
                     ),
+                    onPressed: () {},
+                    child: SizedBox(
+                      height: 80.0,
+                      width: 300.0,
+                      child: Center(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            internalLeadIcon,
+                            const SizedBox(width: 16.0),
+                            Text(
+                              AppLocalizations.of(context)!.internalLead,
+                              style: TextStyle(
+                                color: theme.darkBlue.colour,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24.0),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox(
+                        value: setAsDefaultOption,
+                        onChanged: (bool? value) {
+                          if (value == null) return;
+                          setState(() {
+                            setAsDefaultOption = value;
+                          });
+                        },
+                        activeColor: theme.teal.colour,
+                        side: BorderSide(
+                          color: theme.white.colour,
+                          width: 2.0,
+                        ),
+                      ),
+                      Text(
+                        AppLocalizations.of(context)!.setAsDefaultOption,
+                        style: TextStyle(
+                          color: theme.white.colour,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
