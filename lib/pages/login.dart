@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:marsbazaar/provider/default_provider.dart';
 import 'package:marsbazaar/util/elements.dart';
 import 'package:marsbazaar/util/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'attendance.dart';
+import 'internal_lead.dart';
 
 class LoginOnboard extends StatefulWidget {
   const LoginOnboard({Key? key}) : super(key: key);
@@ -285,6 +289,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             onPressed: () async {
                               // TODO: Login user
+                              // Stub: Push to welcome user page
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const WelcomeUserPage(),
+                                ),
+                              );
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -328,6 +338,24 @@ class _WelcomeUserPageState extends State<WelcomeUserPage> {
   bool setAsDefaultOption = false;
 
   @override
+  void initState() {
+    initPlatformState();
+    super.initState();
+  }
+
+  void initPlatformState() async {
+    if (defaultProvider(context).redirectToDefaultOption) {
+      defaultProvider(context).updateRedirectToDefaultOption();
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => sp.getString("defaultLoginOption") == "internalLead" ? const InternalLeadPage() : const AttendancePage(),
+        ),
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: theme.darkBlue.colour,
@@ -355,7 +383,7 @@ class _WelcomeUserPageState extends State<WelcomeUserPage> {
                     builder: (BuildContext context, AsyncSnapshot<SharedPreferences> sp) {
                       if (sp.hasData) {
                         return Text(
-                          AppLocalizations.of(context)!.helloDefaultUserName(sp.data!.getString("defaultUserName") ?? "Dhruv"),
+                          AppLocalizations.of(context)!.helloDefaultUserName(sp.data!.getString("defaultUserName") ?? defaultUserName),
                           style: TextStyle(
                             fontSize: 24.0,
                             fontWeight: FontWeight.bold,
@@ -391,7 +419,18 @@ class _WelcomeUserPageState extends State<WelcomeUserPage> {
                       elevation: 0.0,
                       primary: theme.teal.colour,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      // Store as default option if selected
+                      if (setAsDefaultOption) {
+                        SharedPreferences sp = await SharedPreferences.getInstance();
+                        sp.setString("defaultLoginOption", "attendance");
+                      }
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const AttendancePage(),
+                        ),
+                      );
+                    },
                     child: SizedBox(
                       height: 80.0,
                       width: 300.0,
@@ -419,7 +458,18 @@ class _WelcomeUserPageState extends State<WelcomeUserPage> {
                       elevation: 0.0,
                       primary: theme.lightBlue.colour,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      // Store as default option if selected
+                      if (setAsDefaultOption) {
+                        SharedPreferences sp = await SharedPreferences.getInstance();
+                        sp.setString("defaultLoginOption", "internalLead");
+                      }
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const InternalLeadPage(),
+                        ),
+                      );
+                    },
                     child: SizedBox(
                       height: 80.0,
                       width: 300.0,
