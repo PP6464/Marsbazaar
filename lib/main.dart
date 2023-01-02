@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:marsbazaar/util/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:marsbazaar/provider/app_state.dart';
+import 'package:marsbazaar/util/theme.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider<AppState>(
+      create: (_) => AppState(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -34,9 +41,10 @@ class MyApp extends StatelessWidget {
           surface: theme.white.colour,
           onSurface: theme.black.colour,
         ),
-        fontFamily: "Maven Pro"
+        fontFamily: "Maven Pro",
+        scaffoldBackgroundColor: theme.white.colour,
       ),
-      home: const WelcomeUserPage(),
+      home: const LoginOnboard(),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
     );
