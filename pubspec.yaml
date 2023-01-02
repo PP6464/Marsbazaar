@@ -21,6 +21,8 @@ dependencies:
   # Launcher
   flutter_app_name: ^0.1.1
   flutter_launcher_icons: ^0.11.0
+  # Provider (App state info)
+  provider: ^6.0.5
 
 flutter_app_name:
   name: "MarsBazaar Internal Lead App"
@@ -46,6 +48,10 @@ flutter:
     - assets/logo.png
     - assets/internal_lead_icon.png
     - assets/attendance_icon.png
+    - assets/hand_click_icon.png
+    - assets/clock_in_icon.png
+    - assets/clock_out_icon.png
+    - assets/clock_hours_icon.png
   fonts:
    - family: Maven Pro
      fonts:
