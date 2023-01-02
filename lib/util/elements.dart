@@ -12,3 +12,7 @@ Text errorText(BuildContext context) => Text(AppLocalizations.of(context)!.error
 Widget loadingIndicator = CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(theme.teal.colour), backgroundColor: Colors.teal[700]!,);
 Widget internalLeadIcon = Image.asset("assets/internal_lead_icon.png");
 Widget attendanceIcon = Image.asset("assets/attendance_icon.png");
+Widget handClickIcon = Image.asset("assets/hand_click_icon.png");
+Widget clockInIcon = Image.asset("assets/clock_in_icon.png");
+Widget clockOutIcon = Image.asset("assets/clock_out_icon.png");
+Widget clockHoursIcon = Image.asset("assets/clock_hours_icon.png");
