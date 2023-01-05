@@ -438,7 +438,7 @@ class _AttendancePageState extends State<AttendancePage> {
                           radius: 65.0,
                           backgroundImage: NetworkImage(sp.data!.getString("defaultUserPhotoURL") ?? defaultUserPhotoURL),
                         ),
-                        const SizedBox(width: 24.0)
+                        const SizedBox(width: 24.0),
                       ],
                     );
                   } else if (sp.hasError) {
