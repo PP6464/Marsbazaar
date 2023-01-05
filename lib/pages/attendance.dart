@@ -426,6 +426,28 @@ class _AttendancePageState extends State<AttendancePage> {
                 height: 1.0,
                 color: const Color(0xFF000000),
               ),
+              const SizedBox(height: 56.0),
+              FutureBuilder(
+                future: SharedPreferences.getInstance(),
+                builder: (BuildContext context, AsyncSnapshot<SharedPreferences> sp) {
+                  if (sp.hasData) {
+                    return Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          radius: 65.0,
+                          backgroundImage: NetworkImage(sp.data!.getString("defaultUserPhotoURL") ?? defaultUserPhotoURL),
+                        ),
+                        const SizedBox(width: 24.0)
+                      ],
+                    );
+                  } else if (sp.hasError) {
+                    return errorText(context);
+                  } else {
+                    return loadingIndicator;
+                  }
+                },
+              ),
             ],
           ),
         ),
